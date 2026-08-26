@@ -1,6 +1,6 @@
 # 🚀 Modality Fault Lines: Structural Corruptions Reveal Fragile Omni-Modal Reasoning
 
-**Paper:** Findings of EMNLP 2026 | **Dataset:** [Hugging Face (coming soon)](https://huggingface.co/datasets/KZL96/ModalityFaultLines-SCEval)
+**Paper:** Findings of EMNLP 2026 | **Dataset:** [Hugging Face](https://huggingface.co/datasets/KZL96/ModalityFaultLines-SCEval)
 
 SCEval is a human-verified benchmark for studying the robustness of omni-modal models when text, visual input, and audio remain available but their internal evidence structure becomes unreliable. It focuses on structural corruption rather than missing-modality ablation: the task, answer options, and modality channels are held fixed while controlled corruptions are applied to text, vision, audio, or their combinations.
 
