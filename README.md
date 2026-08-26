@@ -73,16 +73,17 @@ SCEval measures how model behavior changes when evidence remains available but b
 
 The benchmark is intended as a behavioral diagnostic. It identifies empirical robustness patterns under controlled structural corruption; it does not by itself establish the internal causal mechanism or representation-level source of a model's behavior.
 
-## 📈 Key Findings
+## 📈 Robustness under Structural Corruption
 
 In the paper, SCEval is evaluated on 15 omni-modal systems: seven proprietary/API models and eight open or open-API models. The results show that clean accuracy alone is not a reliable indicator of robustness under structurally degraded evidence.
 
-| Evaluation setting | Result | Interpretation |
-| --- | --- | --- |
-| Severity-70 single-modality conditions | Five operators---`drop_words`, `word_shuffle`, `noise`, `remove`, and `mute`---each yield a panel-mean drop of at least 7 percentage points. | Fragility concentrates in corruption types that disrupt word identity, dense visual evidence, or audio segments. |
-| Visual `noise` | Mean accuracy falls by 11.3 points for both the proprietary/API group and the open-model group. | Higher clean accuracy does not by itself imply greater robustness to this structural perturbation. |
-| Joint text--vision corruption | Mild text corruption (`drop_words` at 30) combined with heavy visual noise (70) produces a consistent asymmetric text--vision failure pattern across the model panel. | Increasing the corruption severity of every channel does not necessarily cause greater degradation. |
-| Bimodal and trimodal conditions | The degradation pattern is structured and model-dependent, rather than a simple function of how many modalities are corrupted. | Text--vision damage forms the most stable shared modality fault line. |
+<p align="center">
+  <img src="assets/severity-curves-representative.png" alt="Severity curves for six representative omni-modal systems" width="82%">
+</p>
+
+<p align="center"><em>Severity curves for six representative systems. Text, vision, and audio corruptions are shown with solid, dashed, and dotted lines; complete results for all 15 systems are reported in the paper.</em></p>
+
+Corruption severity does not affect all operators equally. Word dropping, word shuffling, and visual noise produce the steepest declines, often accelerating beyond severity 30; audio removal and muting vary more across models, while distortion and appearance-level visual changes remain comparatively mild. This contrast suggests that fragility is driven less by generic perceptual degradation than by damage to evidence-bearing structure---lexical content and order, dense visual signal, or localized audio evidence. Models with different clean accuracies nevertheless share similar operator rankings, and their nonlinear decay indicates that performance can remain stable until sufficient structure is lost. Clean accuracy and corruption robustness should therefore be treated as distinct dimensions of omni-modal capability.
 
 ## 🔗 Availability
 
