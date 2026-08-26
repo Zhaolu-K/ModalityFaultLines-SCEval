@@ -14,6 +14,38 @@ Each SCEval condition is paired with its clean counterpart at the example level.
 
 SCEval supports analysis at two complementary levels. Single-modality conditions identify which kind of evidence a model is sensitive to, while bimodal and trimodal conditions show whether simultaneous corruption produces a simple accumulation of errors or a qualitatively different failure pattern.
 
+## 🔍 What SCEval Tests
+
+The central comparison is between a clean input and a structurally corrupted version of the same example. The modality channel and underlying scene remain present, but the evidence inside the channel becomes less reliable. SCEval tests whether a model preserves its answer under this intermediate form of degradation rather than after the modality is removed entirely. The examples below illustrate visual corruptions; the same principle is applied to text and audio, individually and jointly.
+
+<table>
+<thead>
+<tr>
+<th colspan="2">Case 1 · Overexposure</th>
+<th colspan="2">Case 2 · Occlusion</th>
+<th colspan="2">Case 3 · Defocus Blur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td width="16.67%" align="center" valign="top"><img src="assets/case-01-painter-clean.jpg" alt="Clean painter example" width="100%"></td>
+<td width="16.67%" align="center" valign="top"><img src="assets/case-01-painter-overexposure.jpg" alt="Painter example with overexposure" width="100%"></td>
+<td width="16.67%" align="center" valign="top"><img src="assets/case-02-runner-clean.jpg" alt="Clean runner example" width="100%"></td>
+<td width="16.67%" align="center" valign="top"><img src="assets/case-02-runner-occlusion.png" alt="Runner example with occlusion" width="100%"></td>
+<td width="16.67%" align="center" valign="top"><img src="assets/case-03-stage-clean.jpg" alt="Clean stage example" width="100%"></td>
+<td width="16.67%" align="center" valign="top"><img src="assets/case-03-stage-defocus-blur.png" alt="Stage example with defocus blur" width="100%"></td>
+</tr>
+<tr>
+<td align="center"><strong>Clean</strong></td>
+<td align="center"><strong>Corrupted</strong></td>
+<td align="center"><strong>Clean</strong></td>
+<td align="center"><strong>Corrupted</strong></td>
+<td align="center"><strong>Clean</strong></td>
+<td align="center"><strong>Corrupted</strong></td>
+</tr>
+</tbody>
+</table>
+
 ## 📦 SCEval at a Glance
 
 <table>
