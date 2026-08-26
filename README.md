@@ -14,21 +14,36 @@ Each SCEval condition is paired with its clean counterpart at the example level.
 
 SCEval supports analysis at two complementary levels. Single-modality conditions identify which kind of evidence a model is sensitive to, while bimodal and trimodal conditions show whether simultaneous corruption produces a simple accumulation of errors or a qualitatively different failure pattern.
 
-## 📦 Dataset Composition
+## 📦 SCEval at a Glance
 
-| Property | Description |
-| --- | --- |
-| Verified base set | 273 tri-modal examples |
-| Source benchmarks | Social-IQ, OmniBench, and VALOR |
-| Modalities | Text, visual input, and audio |
-| Question format | Multiple-choice questions with a reference answer |
-| Corruption settings | Single-modality, bimodal, and trimodal conditions |
-| Severity levels | 10, 30, 50, and 70 |
-| Comparison design | Paired clean-versus-corrupted evaluation on the same base example |
+<table>
+<tr>
+<td width="42%" valign="top">
 
-The verified base set contains 100 examples from Social-IQ, 77 from OmniBench, and 96 from VALOR. Source examples are used under the terms of their respective benchmark releases.
+<table>
+<thead>
+<tr><th>Property</th><th>SCEval</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Examples</strong></td><td>273 human-verified tri-modal examples</td></tr>
+<tr><td><strong>Sources</strong></td><td>Social-IQ (100)<br>OmniBench (77)<br>VALOR (96)</td></tr>
+<tr><td><strong>Modalities</strong></td><td>Text · Vision · Audio</td></tr>
+<tr><td><strong>Task</strong></td><td>Multiple-choice question answering</td></tr>
+<tr><td><strong>Evaluation</strong></td><td>Single · Dual · Tri-modal corruption</td></tr>
+<tr><td><strong>Severity</strong></td><td>10 · 30 · 50 · 70</td></tr>
+</tbody>
+</table>
 
-Every base example links a clean tri-modal multiple-choice question to matched structural-corruption conditions. The paired design keeps the underlying item fixed, allowing changes in model behavior to be attributed to the altered evidence structure rather than to a different question or answer space.
+</td>
+<td width="58%" valign="top" align="center">
+
+<img src="assets/structural-corruption-map.jpg" alt="Structural Corruption Map" width="100%">
+
+</td>
+</tr>
+</table>
+
+Each SCEval item pairs a clean tri-modal example with controlled corrupted variants while keeping the sample identity, question, answer options, and reference label unchanged. This enables paired clean-to-corrupted evaluation on the same underlying task. Human verification further distinguishes **gold-preserved** robustness cases from interpretable **stress-only** cases in which the original answer is no longer fully supported. Source media remains subject to the licenses of Social-IQ, OmniBench, and VALOR.
 
 ## 🧩 Corruption Design
 
