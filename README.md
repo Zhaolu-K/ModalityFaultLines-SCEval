@@ -6,10 +6,7 @@ SCEval is a human-verified benchmark for studying the robustness of omni-modal m
 
 Rather than asking whether a model can answer with one modality removed, SCEval asks a more practical question: does its answer remain stable when a channel is still available but its words, visual details, or temporal signal can no longer be trusted in the usual way? The benchmark is designed to expose this gap between clean omni-modal accuracy and robustness to degraded cross-modal evidence.
 
-<p align="center">
-  <img src="assets/sceval-case.png" alt="A clean tri-modal example and its structurally corrupted counterpart in SCEval" width="520">
-</p>
-<p align="center"><em>Example from SCEval. The three modality channels remain present, while their internal structure is perturbed.</em></p>
+![Example from SCEval](./case1.png)
 
 ## 🧭 Overview
 
