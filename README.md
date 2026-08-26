@@ -66,12 +66,12 @@ In the paper, SCEval is evaluated on 15 omni-modal systems: seven proprietary/AP
 | --- | --- | --- |
 | Severity-70 single-modality conditions | Five operators---`drop_words`, `word_shuffle`, `noise`, `remove`, and `mute`---each yield a panel-mean drop of at least 7 percentage points. | Fragility concentrates in corruption types that disrupt word identity, dense visual evidence, or audio segments. |
 | Visual `noise` | Mean accuracy falls by 11.3 points for both the proprietary/API group and the open-model group. | Higher clean accuracy does not by itself imply greater robustness to this structural perturbation. |
-| Joint text--vision corruption | Mild text corruption (`drop_words` at 30) combined with heavy visual noise (70) is the steepest joint failure in the representative-model analysis. | The most damaging condition is asymmetric; making every channel more severely corrupted is not necessarily worse. |
+| Joint text--vision corruption | Mild text corruption (`drop_words` at 30) combined with heavy visual noise (70) produces a consistent asymmetric text--vision failure pattern across the model panel. | Increasing the corruption severity of every channel does not necessarily cause greater degradation. |
 | Bimodal and trimodal conditions | The degradation pattern is structured and model-dependent, rather than a simple function of how many modalities are corrupted. | Text--vision damage forms the most stable shared modality fault line. |
 
 ## 🔗 Availability
 
-The SCEval dataset will be released on the Hugging Face Hub:
+The SCEval dataset is available on the Hugging Face Hub:
 
 <https://huggingface.co/datasets/KZL96/ModalityFaultLines-SCEval>
 
