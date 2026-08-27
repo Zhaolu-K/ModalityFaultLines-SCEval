@@ -123,6 +123,62 @@ The SCEval dataset is available on the Hugging Face Hub:
 
 <https://huggingface.co/datasets/KZL96/ModalityFaultLines-SCEval>
 
+### Contents
+
+```
+data/
+├─ dataset_baseline.jsonl          273 clean tri-modal questions (baseline reference)
+├─ dataset_single.jsonl         29,144 single-modality corruptions
+├─ dataset_combined.jsonl       17,875 bimodal + trimodal joint corruptions
+└─ dataset_*_preview.json          first 30 rows of each file, indented
+media/
+├─ Social_IQ_single_question/    video + audio, 100 base examples
+├─ omnibench/                    image + audio, 77 base examples
+└─ valor/                        video + audio, 96 base examples
+```
+
+Each line of `data/*.jsonl` is one question and carries everything needed to evaluate it: question
+text, answer options `A0`–`A3`, the reference key, the corruption metadata (`corruption_modality`,
+`corruption_type`, `severity_base`, `severity_variant`), and direct URLs to the media. The media tree
+mirrors `<source>/<sample_id>/<modality>/<operator>/<severity>/<variant>/<file>`. `sample_id` is what
+ties a corrupted row back to its clean counterpart in the baseline split.
+
+### Loading
+
+Metadata only, media stays remote:
+
+```python
+from datasets import load_dataset
+
+baseline = load_dataset("KZL96/ModalityFaultLines-SCEval", "baseline", split="train")
+single   = load_dataset("KZL96/ModalityFaultLines-SCEval", "single",   split="train")
+
+row = single[0]
+print(row["question"], row["options"], row["gold_key"])
+print(row["visual_url"], row["audio_url"])
+```
+
+Media is roughly 112 GB in total, so fetching a single source is usually enough to start:
+
+```python
+from huggingface_hub import snapshot_download
+
+snapshot_download(
+    repo_id="KZL96/ModalityFaultLines-SCEval",
+    repo_type="dataset",
+    allow_patterns=["media/omnibench/**"],   # drop this argument for the full tree
+    local_dir="./SCEval",
+)
+```
+
+### Reporting conventions
+
+Two conventions are needed to reproduce the numbers in the paper. Corrupted rows are only
+interpretable against their same-`sample_id` baseline row, so the baseline split should be evaluated
+alongside any corruption split. And for stochastic operators, the multiple `severity_variant`
+realizations within one (model, modality, operator, severity) bucket are aggregated **worst-case**:
+if any variant is answered incorrectly, the bucket counts as incorrect.
+
 ## ⚠️ Limitations
 
 SCEval contains 273 English tri-modal multiple-choice examples from three source benchmarks. Its operators model controlled structural degradation rather than semantic substitutions or adversarially optimized attacks. The benchmark is designed as a focused diagnostic setting, not as an exhaustive account of omni-modal robustness across languages, tasks, or real-world corruption processes.
